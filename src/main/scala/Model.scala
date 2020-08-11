@@ -1,7 +1,11 @@
 package scells
 
 class Model(height: Int, width: Int) {
-  case class Cell(row: Int, column: Int)
+  case class Cell(row: Int, column: Int) {
+    override def toString: String = {
+      Coord(row, column).toString
+    }
+  }
 
   val cells = Array.ofDim[Cell](height, width)
 
