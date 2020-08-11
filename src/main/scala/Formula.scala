@@ -2,8 +2,16 @@ package scells
 
 trait Formula
 
-case class Coord(row: Int, column: Int) extends Formula {
-  override def toString = ('A' + column).toChar.toString + row
+case class Coord(row: Int, var column: Int) extends Formula {
+  override def toString = {
+    var columnStr = ""
+    do {
+      println(column)
+      columnStr += (column % 26 + 'A').toChar.toString
+      column = column / 26
+    } while (column != 0)
+    columnStr.reverse + row.toString
+  }
 }
 
 case class Range(c1: Coord, c2: Coord) extends Formula {
