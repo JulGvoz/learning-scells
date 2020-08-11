@@ -1,16 +1,12 @@
 package scells
 
+import alphacolumn._
+
 trait Formula
 
 case class Coord(row: Int, var column: Int) extends Formula {
   override def toString = {
-    var columnStr = ""
-    do {
-      println(column)
-      columnStr += (column % 26 + 'A').toChar.toString
-      column = column / 26
-    } while (column != 0)
-    columnStr.reverse + row.toString
+    column.toAlpha + row.toString
   }
 }
 
