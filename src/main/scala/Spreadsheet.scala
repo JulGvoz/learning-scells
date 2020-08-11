@@ -38,9 +38,15 @@ class Spreadsheet(val height: Int, val width: Int)
   rowHeaderView = rowHeader
 }
 
-class Model {
-  def this(height: Int, width: Int) = {
-    this()
+class Model(height: Int, width: Int) {
+  case class Cell(row: Int, column: Int)
+
+  val cells = Array.ofDim[Cell](height, width)
+
+  for {
+    i <- 0 until height
+    j <- 0 until width
+  } {
+    cells(i)(j) = new Cell(i, j)
   }
-  def cells(row: Int)(column: Int): String = ???
 }
