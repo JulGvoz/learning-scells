@@ -1,6 +1,7 @@
 package scells
 
 import scala.util.parsing.combinator.RegexParsers
+import alphacolumn._
 
 object FormulaParsers extends RegexParsers {
   def identifier: Parser[String] = """[a-zA-Z_]\w*""".r
@@ -11,12 +12,9 @@ object FormulaParsers extends RegexParsers {
       val columnString = "[A-Za-z]+".r findFirstIn s
       columnString match {
         case Some(str) => {
-          val columnStringLength = str.length
-          val column = (for ((c, i) <- str zip (columnStringLength until 0 by -1)) yield {
-            (c.toUpper - 'A')*math.pow(26, i - 1).toInt
-          }).sum
-          val row = s.substring(columnStringLength).toInt
-          Coord(row, column)
+          
+          val row = s.substring(str.length).toInt
+          Coord(row, str.toUpperCase.toColumn)
         }
         case None => throw new IllegalArgumentException
       }
