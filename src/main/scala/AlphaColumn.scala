@@ -9,7 +9,7 @@ package alphacolumn {
       val values = for ((char, power) <- str zip powers) yield {
         (char - 'A' + 1)*power
       }
-      values.sum
+      values.sum - 1
     }
   }
 
@@ -22,7 +22,7 @@ package alphacolumn {
         }
         case z => z % 26 :: decompose(z / 26) // regular case. just cascade down, like normal decimal/binary/base-n decomposition
       }
-      (decompose(col) map ((x: Int) => (x + 'A' - 1).toChar))
+      (decompose(col + 1) map ((x: Int) => (x + 'A' - 1).toChar))
       .mkString.reverse
     }
   }
