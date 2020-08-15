@@ -36,7 +36,7 @@ object FormulaParsers extends RegexParsers {
     range | cell | number | application
   
   def textual: Parser[Textual] = 
-    """[^=].*""".r ^^ Textual
+    ("""[^=].*""".r | "") ^^ Textual
   
   def formula: Parser[Formula] =
     number | textual | "="~>expr
