@@ -7,6 +7,7 @@ lazy val scells = (project in file("."))
     libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "2.1.1",
     libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test",
+    libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.0",
   )
 
 scalacOptions := Seq(
