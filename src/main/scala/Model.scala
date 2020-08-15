@@ -1,12 +1,13 @@
 package scells
 
-class Model(height: Int, width: Int) {
+class Model(height: Int, width: Int) extends Evaluator with Arithmetic {
   case class Cell(row: Int, column: Int) {
     var formula: Formula = Empty
-    override def toString: String = {
-      formula.toString
+    override def toString: String = formula match {
+      case Textual(s) => s
+      case _ => value.toString
     }
-    var value: Double = ???
+    def value: Double = evaluate(formula)
   }
 
   val cells = Array.ofDim[Cell](height, width)
