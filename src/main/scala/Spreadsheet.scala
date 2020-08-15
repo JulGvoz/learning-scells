@@ -1,6 +1,7 @@
 package scells
 
 import scala.swing._
+import scala.swing.event.TableUpdated
 
 class Spreadsheet(val height: Int, val width: Int)
     extends ScrollPane {
@@ -26,6 +27,12 @@ class Spreadsheet(val height: Int, val width: Int)
       if (v == null) "" else v.toString
     }
 
+    reactions += {
+      case TableUpdated(table, rows, column) =>
+        for (row <- rows)
+          cells(row)(column).formula =
+            FormulaParsers.parse(userData(row, column))
+    }
   }
 
   val rowHeader = 

@@ -29,6 +29,7 @@ object FormulaParsers extends RegexParsers {
   def application: Parser[Application] = 
     identifier~"("~repsep(expr, ",")~")" ^^ {
       case f~"("~ps~")" => Application(f, ps)
+      case _ => ??? // rids me of warning
     }
   
   def expr: Parser[Formula] = 

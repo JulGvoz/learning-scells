@@ -2,8 +2,9 @@ package scells
 
 class Model(height: Int, width: Int) {
   case class Cell(row: Int, column: Int) {
+    var formula: Formula = Empty
     override def toString: String = {
-      Coord(row, column).toString
+      formula.toString
     }
   }
 
