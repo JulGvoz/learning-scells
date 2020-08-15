@@ -6,6 +6,7 @@ class Model(height: Int, width: Int) {
     override def toString: String = {
       formula.toString
     }
+    var value: Double = ???
   }
 
   val cells = Array.ofDim[Cell](height, width)
