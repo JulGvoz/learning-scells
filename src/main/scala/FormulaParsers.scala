@@ -39,7 +39,7 @@ object FormulaParsers extends RegexParsers {
     ("""[^=].*""".r | "") ^^ Textual
   
   def formula: Parser[Formula] =
-    number | textual | "="~>expr
+    number | "="~>expr | textual
   
   def parse(input: String): Formula = 
     parseAll(formula, input) match {
